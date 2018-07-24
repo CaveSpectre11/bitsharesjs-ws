@@ -29,6 +29,7 @@ var Manager = function () {
         this.urls = urls.filter(function (a) {
             return a !== url;
         });
+        this.reducedUrls = null;
         this.autoFallback = autoFallback;
         this.closeCb = closeCb;
         this.optionalApis = optionalApis || {};
@@ -118,7 +119,7 @@ var Manager = function () {
         var reject = arguments[3];
 
         var checkFunction = function checkFunction(resolve, reject) {
-            var fullList = _this3.urls.concat(_this3.url);
+            var fullList = (_this3.reducedUrls || _this3.urls).concat(_this3.url);
             var connectionPromises = [];
 
             fullList.forEach(function (url) {
